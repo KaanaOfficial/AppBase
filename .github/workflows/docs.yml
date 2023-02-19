@@ -1,4 +1,4 @@
-name: Deploy Docus documentation to GitHub Pages
+name: Deploy Docs to GitHub Pages
 
 on:
   push:
@@ -10,17 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout source code
+      uses: actions/checkout@v2
 
-      - name: Install Docus
-        run: npm install docus
+    - name: Install dependencies
+      run: npm install
 
-      - name: Build Docus documentation
-        run: npx docus build
+    - name: Build documentation
+      run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/public
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        branch: gh-pages
+        folder: docs
