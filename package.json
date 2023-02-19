@@ -10,7 +10,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "node --max-old-space-size=4096 node_modules/nuxt/bin/nuxt.js generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
