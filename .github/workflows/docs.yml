@@ -1,4 +1,4 @@
-name: Deploy Docus to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,18 +6,23 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
 
-      - name: Build site
-        run: npm run build
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn generate
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
