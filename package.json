@@ -1,12 +1,12 @@
 {
-  "name": "kaana-mention",
+  "name": "kaana-appbase",
   "version": "0.1.0",
-  "description": "Mention is a social media platform that allows you to share your thoughts and ideas with the world.",
+  "description": "Kaana base app to build Kaana apps with Kaana Services",
   "repository": {
     "type": "git",
-    "url": "git://github.com/KaanaOfficial/Mention"
+    "url": "git://github.com/KaanaOfficial/AppBase"
   },
-  "author": "KaanaOfficial",
+  "author": "kaana",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
