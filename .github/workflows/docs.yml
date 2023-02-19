@@ -1,4 +1,4 @@
-name: Docus Deployment
+name: Deploy Docus documentation to GitHub Pages
 
 on:
   push:
@@ -10,14 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Docus Deploy
-      uses: peter-evans/docus-action@v2.0.0
-      with:
-        build-command: |
-          cd docs
-          docus build
-        deploy-token: ${{ secrets.DEPLOY_TOKEN }}
-        deploy-repository: KaanaOfficial/AppBase
+      - name: Install Docus
+        run: npm install docus
+
+      - name: Build Docus documentation
+        run: npx docus build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/public
